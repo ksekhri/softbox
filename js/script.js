@@ -1,22 +1,36 @@
 const HIDE_INFO_WRAPPER_MS = 2500
 
-const onload = () => {
-  document.body.style.background = '#FFF0E8'
-  document.ondblclick = toggleFullScreen
-  document.onmousemove = showInfoWrapperOnMove
-  setTimeout(() => {
-    showInfoWrapper()
-    setTimeout(hideInfoWrapper, HIDE_INFO_WRAPPER_MS)
-  }, 250)
-  document.querySelector('#year').appendChild(document.createTextNode(` ${new Date().getFullYear()}`))
-}
-
-const toggleFullScreen = () => {
+const toggleFullscreenDefault = () => {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen()
   } else {
     document.exitFullscreen?.()
   }
+}
+
+const toggleFullscreenSafari = () => {
+  if (!document.webkitFullscreenElement) {
+    document.documentElement.webkitRequestFullscreen()
+  } else {
+    document.webkitCancelFullScreen?.()
+  }
+}
+
+const toggleFullscreen = document.documentElement?.requestFullscreen
+? toggleFullscreenDefault
+: document.documentElement?.webkitRequestFullscreen
+  ? toggleFullscreenSafari
+  : () => {}
+
+const onload = () => {
+  document.body.style.background = '#FFF0E8'
+  document.ondblclick = toggleFullscreen
+  document.onmousemove = showInfoWrapperOnMove
+  setTimeout(() => {
+    showInfoWrapper()
+    setTimeout(hideInfoWrapper, HIDE_INFO_WRAPPER_MS)
+  }, 250)
+  document.querySelector('#year').appendChild(document.createTextNode(`${new Date().getFullYear()} `))
 }
 
 const showInfoWrapper = () => {
