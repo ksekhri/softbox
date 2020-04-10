@@ -23,7 +23,7 @@ const toggleFullscreen = document.documentElement?.requestFullscreen
   : () => {}
 
 const onload = () => {
-  document.body.style.background = '#FFF0E8'
+  document.querySelector('#background').style.background = '#FFF0E8'
   document.ondblclick = toggleFullscreen
   document.onmousemove = showInfoWrapperOnMove
   setTimeout(() => {

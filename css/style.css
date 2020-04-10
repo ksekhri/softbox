@@ -2,6 +2,14 @@ body {
   margin: 0;
 }
 
+#background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 #info-wrapper {
   display: flex;
   justify-content: space-between;
