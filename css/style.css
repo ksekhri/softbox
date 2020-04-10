@@ -23,7 +23,6 @@ body {
   right: 0;
   opacity: 0;
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-  font-size: 1rem;
   user-select: none;
   -webkit-user-select: none;
   transition: opacity 400ms ease-out;
@@ -35,9 +34,16 @@ body {
 }
 
 #info-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+#about-text {
   pointer-events: none;
 }
 
 a {
   text-decoration: none;
+  pointer-events: initial;
 }
