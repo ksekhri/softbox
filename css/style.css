@@ -1,5 +1,15 @@
+/* General Styles */
+
+:root {
+  --opacity-transition: opacity 400ms ease-out;
+}
+
 body {
   margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 #background {
@@ -8,11 +18,13 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  transition: background-color 110ms ease-out;
 }
 
-#info-wrapper {
+/* Info */
+
+#info-wrapper, #settings-wrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   position: fixed;
@@ -22,15 +34,29 @@ body {
   left: 0;
   right: 0;
   opacity: 0;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  transition: var(--opacity-transition);
   user-select: none;
   -webkit-user-select: none;
-  transition: opacity 400ms ease-out;
+  pointer-events: none;
+}
+
+#info-wrapper {
+  justify-content: space-between;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
 #info-wrapper.show {
   opacity: 1;
   pointer-events: initial;
+}
+
+#settings-gear {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.show #settings-gear {
+  cursor: pointer;
 }
 
 #info-text {
@@ -43,7 +69,36 @@ body {
   pointer-events: none;
 }
 
-a {
-  text-decoration: none;
+#info-wrapper a {
   pointer-events: initial;
+}
+
+/* Settings */
+
+.settings #settings-wrapper {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.settings #info-wrapper, .settings #info-wrapper.show {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#settings-container {
+  display: flex;
+  align-items: center;
+}
+
+#color-temperature-slider {
+  width: 200px;
+  margin-right: 1rem;
+}
+
+#reset-button {
+  margin-right: 0.725rem;
+}
+
+#close-settings {
+  cursor: pointer;
 }

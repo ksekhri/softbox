@@ -13,11 +13,20 @@
   <body onload="onload()">
     <div id="background"></div>
     <div id="info-wrapper">
-      <div></div>
+      <div id="settings-gear">
+        ⚙️
+      </div>
       <div id="info-text">Double click to toggle fullscreen</div>
       <div id="about-text">
         © <span id="year"></span><a href="https://ksekhri.com">Karan Sekhri</a> —
         <a href="https://github.com/ksekhri/softbox">Source</a>
+      </div>
+    </div>
+    <div id="settings-wrapper">
+      <div id="settings-container">
+        <input type="range" min="3600" max="7200" value="5775" step="25" id="color-temperature-slider">
+        <button id="reset-button" onclick="reset()">Reset</button>
+        <span id="close-settings">✖️</span>
       </div>
     </div>
   </body>
