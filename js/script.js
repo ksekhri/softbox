@@ -55,6 +55,23 @@ const closeSettings = () => {
   showInfoWrapperOnMove()
 }
 
+// Dark Mode
+
+const toggleDarkMode = () => {
+  if (document.body.classList.contains('dark-mode')) {
+    document.body.classList.add('dark-mode-off')
+    setTimeout(() => {document.body.classList.remove('dark-mode-off')}, 250)
+  }
+  document.body.classList.toggle('dark-mode')
+}
+
+const disableDarkMode = () => {
+  if (document.body.classList.contains('dark-mode')) {
+    toggleDarkMode()
+  }
+}
+
+
 const normalizeRgbValue = (rawValue) => Math.round(Math.min(Math.max(0, rawValue), 255))
 const normalizeRgb = ({red, green, blue}) => ({
   red: normalizeRgbValue(red),
@@ -110,6 +127,7 @@ const setBackground = (background) => {
 }
 
 const reset = () => {
+  disableDarkMode()
   document.querySelector('#color-temperature-slider').value = 5775
   setBackground('rgb(255, 240, 232)')
   window.localStorage.clear()
@@ -145,6 +163,11 @@ const onload = () => {
   }, 250)
   document.querySelector('#year').appendChild(document.createTextNode(`${new Date().getFullYear()} `))
   document.querySelector('#color-temperature-slider').oninput = (event) => {
+    disableDarkMode()
     setBackground(temperatureToBackgroundMap[event.target.value])
+  }
+  document.querySelector('#dark-mode-toggle').onclick = toggleDarkMode
+  document.querySelector('#dark-mode-toggle').ondblclick = (event) => {
+    event.stopPropagation()
   }
 }
